@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		function getData() {
+			$.ajax({
+			  type: "GET",
+			  url: "http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/bikeList/1/99",
+			  data: {},
+			  success: function(response){
+			  	var rentBikeStatus = response['rentBikeStatus'];
+			  	var row = rentBikeStatus['row'];
+			  	for (var i = 0.; i < row.length; i++) {
+			  			var stationName = row[i]['stationName'];
+					  	var rackTotCnt = row[i]['rackTotCnt'];
+					  	var parkingBikeTotCnt = row[i]['parkingBikeTotCnt'];
+					  	var html =`
+							<ul>
+								<li>${stationName}</li>
+								<li>${rackTotCnt}</li>
+								<li>${parkingBikeTotCnt}</li>
+							</ul>
+					  	`;
+					  	$('.result').append(html);
+			  		}
+
+			  	var stationName = data['stationName'];
+			  	var rackTotCnt = data['rackTotCnt'];
+			  	var parkingBikeTotCnt = data['parkingBikeTotCnt'];
+
+			  
+			  }
+			})
+		}
+
+	</script>
+
+	<title></title>
+</head>
+<body>
+	<button onclick="getData()">데이터 가지고 오기</button>
+	<div class="result">
+		
+	</div>
+
+</body>
+</html>
