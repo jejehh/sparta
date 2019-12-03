@@ -40,7 +40,7 @@ body{
 }
 
 .card > img{ 
-  width: 500px;
+  width: 80%;
   margin:0 auto;
  }
 
@@ -48,12 +48,55 @@ body{
   margin:40px 0;
  }
 
-    
+.orderForm {
+  display: block;
+}
+
+.orderText{
+   margin : 40px 0;
+   width: 100%
+}
+
+.orderText th{
+  width :25%;
+
+}
 
     </Style>
 
 
-  </head>
+<script>
+     function orderText() {
+
+      $.ajax({
+        type: "get",
+        url: "",
+        data: {},
+        success: function(response){
+
+          let name = $('#orderName').val();
+          let count = $('#orderCount').val();
+          let address = $('#orderAddress').val();
+          let phone = $('#orderPhone').val();
+          if($('#orderButton').click()){
+
+            orderText.name().text(name);
+            orderText.count().text(count);
+            orderText.address().text(orderAddress);
+            orderText.phone().text(orderPhone);
+
+          }
+
+        }
+
+      })
+
+    }
+
+    </script>
+</head>
+
+
   <body>
 <div class="shop">
   <div class="photo">
@@ -71,11 +114,11 @@ body{
 <form>
   <div class="form-group">
     <label for="exampleFormControlInput1">주문하기</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="주문자 성함">
+    <input type="email" class="form-control" id="orderName" placeholder="주문자 성함">
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect1">수량</label>
-    <select class="form-control" id="exampleFormControlSelect1">
+    <select class="form-control" id="orderCount">
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -86,18 +129,41 @@ body{
   <div class="form-group">
     <label for="exampleFormControlInput1">주소</label>
     
-    <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
+    <textarea class="form-control" id="orderAddress"></textarea>
       
     </select>
   </div>
   <div class="form-group">
     <label for="exampleFormControlTextarea1">전화번호</label>
-    <input multiple class="form-control" id="exampleFormControlInput1">
+    <input multiple class="form-control" id="orderPhone">
   </div>
 </form>
 </div>
 
-<button type="button" class="btn btn-secondary btn-lg btn-block">주문하기</button>
+<button type="button" class="btn btn-secondary btn-lg btn-block" id="orderButton">주문하기</button>
+
+
+<table class="orderText">
+  <thead>
+    <tr>
+      <th>이름</th>
+      <th>수량</th>
+      <th>주소</th>
+      <th>전화번호</th>
+    </tr>
+  </thead>
+
+  <tbody> 
+  <tr>
+  <td class="name"></td>  
+  <td class="count"></td>
+  <td class="address"></td>
+  <td class="phone"></td>
+  </tr>
+  </tbody>
+</table>
+
+
 
 </div>
 
